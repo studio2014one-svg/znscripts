@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executors - ZnScripts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Zn<span class="accent">Scripts</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="scripts.html" class="nav-link">Scripts</a></li>
+                <li><a href="executors.html" class="nav-link active">Executors</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-ghost" id="loginBtn">
+                    <span class="btn-icon">👤</span>
+                    Login
+                </button>
+                <button class="btn btn-primary" id="registerBtn">
+                    Registrar
+                </button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="scripts.html" class="mobile-nav-link">Scripts</a></li>
+            <li><a href="executors.html" class="mobile-nav-link active">Executors</a></li>
+            <li><a href="#" class="mobile-nav-link" id="mobileLoginBtn">Login</a></li>
+            <li><a href="#" class="mobile-nav-link" id="mobileRegisterBtn">Registrar</a></li>
+        </ul>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <span class="section-badge">Downloads</span>
+                <h1 class="page-title">Executors</h1>
+                <p class="page-description">
+                    Os melhores executores para rodar seus scripts. 
+                    Download direto, sem complicação.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-bar">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Buscar executors...">
+                </div>
+                <div class="filter-group">
+                    <select class="filter-select" id="platformFilter">
+                        <option value="">Todas as Plataformas</option>
+                        <option value="windows">Windows</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="mac">Mac</option>
+                    </select>
+                    <select class="filter-select" id="sortFilter">
+                        <option value="newest">Mais Recentes</option>
+                        <option value="oldest">Mais Antigos</option>
+                        <option value="name">Nome A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executors Grid -->
+    <section class="content-section">
+        <div class="container">
+            <div class="executors-grid" id="executorsGrid">
+                <!-- Executors serão carregados via JavaScript -->
+            </div>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <span class="empty-icon">📭</span>
+                <h3 class="empty-title">Nenhum executor encontrado</h3>
+                <p class="empty-description">Tente ajustar seus filtros de busca</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">Zn<span class="accent">Scripts</span></span>
+                    </a>
+                    <p class="footer-description">
+                        A melhor plataforma de scripts e executores para Roblox. 
+                        Sem anúncios, sem complicação.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="scripts.html">Scripts</a></li>
+                            <li><a href="executors.html">Executors</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-title">Conta</h4>
+                        <ul>
+                            <li><a href="#" id="footerLoginBtn">Login</a></li>
+                            <li><a href="#" id="footerRegisterBtn">Registrar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZnScripts. Criado por Zn_Atxug. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Executor Detail Modal -->
+    <div class="modal" id="executorModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="closeExecutorModal">&times;</button>
+            <div class="executor-detail" id="executorDetail">
+                <!-- Conteúdo carregado via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeLoginModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Bem-vindo de volta!</h2>
+                <p class="modal-subtitle">Entre na sua conta para continuar</p>
+            </div>
+            <form class="modal-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <input type="text" class="form-input" id="loginUsername" placeholder="Seu nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-input" id="loginPassword" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Entrar
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p>Não tem uma conta? <a href="#" id="switchToRegister">Registre-se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeRegisterModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Criar Conta</h2>
+                <p class="modal-subtitle">Registre-se gratuitamente</p>
+            </div>
+            <form class="modal-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <input type="text" class="form-input" id="registerUsername" placeholder="Escolha um nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="registerEmail" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-input" id="registerPassword" placeholder="Crie uma senha forte" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirmar Senha</label>
+                    <input type="password" class="form-input" id="registerConfirmPassword" placeholder="Confirme sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Criar Conta
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p>Já tem uma conta? <a href="#" id="switchToLogin">Faça login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/executors-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZnScripts - Scripts & Executors para Roblox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Zn<span class="accent">Scripts</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="scripts.html" class="nav-link">Scripts</a></li>
+                <li><a href="executors.html" class="nav-link">Executors</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-ghost" id="loginBtn">
+                    <span class="btn-icon">👤</span>
+                    Login
+                </button>
+                <button class="btn btn-primary" id="registerBtn">
+                    Registrar
+                </button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" class="mobile-nav-link active">Home</a></li>
+            <li><a href="scripts.html" class="mobile-nav-link">Scripts</a></li>
+            <li><a href="executors.html" class="mobile-nav-link">Executors</a></li>
+            <li><a href="#" class="mobile-nav-link" id="mobileLoginBtn">Login</a></li>
+            <li><a href="#" class="mobile-nav-link" id="mobileRegisterBtn">Registrar</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Sem anúncios excessivos
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Scripts & Executors</span>
+                <span class="title-line gradient-text">Premium para Roblox</span>
+            </h1>
+            <p class="hero-description">
+                Descubra a melhor coleção de scripts e executores para Roblox. 
+                Interface limpa, downloads rápidos e sem pop-ups irritantes.
+            </p>
+            <div class="hero-buttons">
+                <a href="scripts.html" class="btn btn-primary btn-lg">
+                    <span class="btn-icon">📜</span>
+                    Ver Scripts
+                </a>
+                <a href="executors.html" class="btn btn-outline btn-lg">
+                    <span class="btn-icon">🚀</span>
+                    Ver Executors
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="scriptsCount">0</span>
+                    <span class="stat-label">Scripts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="executorsCount">0</span>
+                    <span class="stat-label">Executors</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="usersCount">0</span>
+                    <span class="stat-label">Usuários</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-window">
+                <div class="code-header">
+                    <span class="code-dot red"></span>
+                    <span class="code-dot yellow"></span>
+                    <span class="code-dot green"></span>
+                    <span class="code-title">script.lua</span>
+                </div>
+                <div class="code-body">
+                    <pre><code><span class="code-keyword">local</span> player = <span class="code-global">game</span>.Players.LocalPlayer
+<span class="code-keyword">local</span> character = player.Character
+
+<span class="code-comment">-- ZnScripts Premium</span>
+<span class="code-keyword">for</span> i, v <span class="code-keyword">in</span> <span class="code-function">pairs</span>(character:GetChildren()) <span class="code-keyword">do</span>
+    <span class="code-keyword">if</span> v:IsA(<span class="code-string">"BasePart"</span>) <span class="code-keyword">then</span>
+        v.Anchored = <span class="code-boolean">true</span>
+    <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+<span class="code-function">print</span>(<span class="code-string">"✅ Script carregado!"</span>)</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Por que escolher</span>
+                <h2 class="section-title">ZnScripts?</h2>
+                <p class="section-description">
+                    Diferente de outros sites, focamos na experiência do usuário
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚫</div>
+                    <h3 class="feature-title">Sem Anúncios Excessivos</h3>
+                    <p class="feature-description">
+                        Navegue tranquilo sem pop-ups irritantes ou redirecionamentos. 
+                        Sua experiência importa para nós.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Cópia Instantânea</h3>
+                    <p class="feature-description">
+                        Clique uma vez e o script é copiado automaticamente. 
+                        Simples, rápido e eficiente.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3 class="feature-title">Scripts Verificados</h3>
+                    <p class="feature-description">
+                        Todos os scripts são testados antes de serem publicados. 
+                        Segurança em primeiro lugar.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-title">Atualização Constante</h3>
+                    <p class="feature-description">
+                        Novos scripts e executores adicionados regularmente. 
+                        Sempre conteúdo fresh.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">Comunidade Ativa</h3>
+                    <p class="feature-description">
+                        Entre no Discord dos criadores e conecte-se com a comunidade. 
+                        Suporte real.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Design Responsivo</h3>
+                    <p class="feature-description">
+                        Acesse de qualquer dispositivo. Desktop, tablet ou celular. 
+                        Perfeito em todas as telas.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <span class="section-badge">Sobre nós</span>
+                    <h2 class="section-title">Criado por Zn_Atxug</h2>
+                    <p class="about-description">
+                        O ZnScripts nasceu da frustração com sites cheios de anúncios e pop-ups. 
+                        Nosso objetivo é simples: oferecer scripts e executores de qualidade 
+                        em uma plataforma limpa e fácil de usar.
+                    </p>
+                    <p class="about-description">
+                        Acreditamos que você merece uma experiência melhor. Por isso, mantemos 
+                        nosso site livre de propagandas excessivas e focamos no que realmente 
+                        importa: entregar conteúdo de qualidade.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Sem linkvertise</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Sem key system</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-icon">✓</span>
+                            <span>Download direto</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-card">
+                        <div class="about-card-glow"></div>
+                        <div class="about-card-content">
+                            <div class="creator-avatar">
+                                <span>Zn</span>
+                            </div>
+                            <h3 class="creator-name">Zn_Atxug</h3>
+                            <p class="creator-role">Fundador & Desenvolvedor</p>
+                            <div class="creator-stats">
+                                <div class="creator-stat">
+                                    <span class="creator-stat-value">24/7</span>
+                                    <span class="creator-stat-label">Suporte</span>
+                                </div>
+                                <div class="creator-stat">
+                                    <span class="creator-stat-value">100%</span>
+                                    <span class="creator-stat-label">Dedicação</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Scripts Section -->
+    <section class="recent-scripts">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Novidades</span>
+                <h2 class="section-title">Scripts Recentes</h2>
+                <p class="section-description">
+                    Confira os últimos scripts adicionados à nossa biblioteca
+                </p>
+            </div>
+            <div class="scripts-grid" id="recentScripts">
+                <!-- Scripts serão carregados via JavaScript -->
+            </div>
+            <div class="section-footer">
+                <a href="scripts.html" class="btn btn-primary btn-lg">
+                    Ver Todos os Scripts
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Pronto para começar?</h2>
+                <p class="cta-description">
+                    Crie sua conta gratuitamente e tenha acesso a todos os scripts e executores.
+                </p>
+                <button class="btn btn-primary btn-lg" id="ctaRegisterBtn">
+                    Criar Conta Grátis
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">⚡</span>
+                        <span class="logo-text">Zn<span class="accent">Scripts</span></span>
+                    </a>
+                    <p class="footer-description">
+                        A melhor plataforma de scripts e executores para Roblox. 
+                        Sem anúncios, sem complicação.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 class="footer-title">Navegação</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="scripts.html">Scripts</a></li>
+                            <li><a href="executors.html">Executors</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4 class="footer-title">Conta</h4>
+                        <ul>
+                            <li><a href="#" id="footerLoginBtn">Login</a></li>
+                            <li><a href="#" id="footerRegisterBtn">Registrar</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZnScripts. Criado por Zn_Atxug. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeLoginModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Bem-vindo de volta!</h2>
+                <p class="modal-subtitle">Entre na sua conta para continuar</p>
+            </div>
+            <form class="modal-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <input type="text" class="form-input" id="loginUsername" placeholder="Seu nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-input" id="loginPassword" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Entrar
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p>Não tem uma conta? <a href="#" id="switchToRegister">Registre-se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeRegisterModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Criar Conta</h2>
+                <p class="modal-subtitle">Registre-se gratuitamente</p>
+            </div>
+            <form class="modal-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <input type="text" class="form-input" id="registerUsername" placeholder="Escolha um nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="registerEmail" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-input" id="registerPassword" placeholder="Crie uma senha forte" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirmar Senha</label>
+                    <input type="password" class="form-input" id="registerConfirmPassword" placeholder="Confirme sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Criar Conta
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p>Já tem uma conta? <a href="#" id="switchToLogin">Faça login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

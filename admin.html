@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - ZnScripts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Zn<span class="accent">Scripts</span></span>
+            </a>
+            <span class="admin-badge">ADMIN</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="sidebar-link active" data-section="dashboard">
+                <span class="sidebar-icon">📊</span>
+                Dashboard
+            </a>
+            <a href="#scripts" class="sidebar-link" data-section="scripts">
+                <span class="sidebar-icon">📜</span>
+                Scripts
+            </a>
+            <a href="#executors" class="sidebar-link" data-section="executors">
+                <span class="sidebar-icon">🚀</span>
+                Executors
+            </a>
+            <a href="#users" class="sidebar-link" data-section="users">
+                <span class="sidebar-icon">👥</span>
+                Usuários
+            </a>
+            <a href="#settings" class="sidebar-link" data-section="settings">
+                <span class="sidebar-icon">⚙️</span>
+                Configurações
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="btn btn-ghost btn-sm" id="logoutBtn">
+                <span class="btn-icon">🚪</span>
+                Sair
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="topbar-title">
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="topbar-actions">
+                <div class="admin-user">
+                    <span class="admin-user-avatar">👤</span>
+                    <span class="admin-user-name" id="adminName">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section class="admin-section active" id="dashboardSection">
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-card-icon">📜</div>
+                    <div class="stat-card-content">
+                        <span class="stat-card-value" id="totalScripts">0</span>
+                        <span class="stat-card-label">Scripts</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🚀</div>
+                    <div class="stat-card-content">
+                        <span class="stat-card-value" id="totalExecutors">0</span>
+                        <span class="stat-card-label">Executors</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">👥</div>
+                    <div class="stat-card-content">
+                        <span class="stat-card-value" id="totalUsers">0</span>
+                        <span class="stat-card-label">Usuários</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🎮</div>
+                    <div class="stat-card-content">
+                        <span class="stat-card-value" id="totalGames">0</span>
+                        <span class="stat-card-label">Jogos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Scripts Recentes</h3>
+                        <a href="#scripts" class="admin-card-link" data-section="scripts">Ver todos</a>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="recent-list" id="recentScriptsList">
+                            <!-- Carregado via JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Executors Recentes</h3>
+                        <a href="#executors" class="admin-card-link" data-section="executors">Ver todos</a>
+                    </div>
+                    <div class="admin-card-body">
+                        <div class="recent-list" id="recentExecutorsList">
+                            <!-- Carregado via JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>Ações Rápidas</h3>
+                </div>
+                <div class="admin-card-body">
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" id="quickAddScript">
+                            <span class="quick-action-icon">➕</span>
+                            <span>Novo Script</span>
+                        </button>
+                        <button class="quick-action-btn" id="quickAddExecutor">
+                            <span class="quick-action-icon">➕</span>
+                            <span>Novo Executor</span>
+                        </button>
+                        <a href="index.html" class="quick-action-btn" target="_blank">
+                            <span class="quick-action-icon">🌐</span>
+                            <span>Ver Site</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scripts Section -->
+        <section class="admin-section" id="scriptsSection">
+            <div class="section-toolbar">
+                <div class="toolbar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="toolbar-input" id="scriptsSearch" placeholder="Buscar scripts...">
+                </div>
+                <button class="btn btn-primary" id="addScriptBtn">
+                    <span class="btn-icon">➕</span>
+                    Adicionar Script
+                </button>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Jogo</th>
+                            <th>Criador</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scriptsTableBody">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Executors Section -->
+        <section class="admin-section" id="executorsSection">
+            <div class="section-toolbar">
+                <div class="toolbar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="toolbar-input" id="executorsSearch" placeholder="Buscar executors...">
+                </div>
+                <button class="btn btn-primary" id="addExecutorBtn">
+                    <span class="btn-icon">➕</span>
+                    Adicionar Executor
+                </button>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Plataforma</th>
+                            <th>Criador</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="executorsTableBody">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section class="admin-section" id="usersSection">
+            <div class="section-toolbar">
+                <div class="toolbar-search">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="toolbar-input" id="usersSearch" placeholder="Buscar usuários...">
+                </div>
+            </div>
+
+            <div class="admin-table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Carregado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="admin-section" id="settingsSection">
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>Alterar Senha do Admin</h3>
+                </div>
+                <div class="admin-card-body">
+                    <form class="settings-form" id="changePasswordForm">
+                        <div class="form-group">
+                            <label class="form-label">Senha Atual</label>
+                            <input type="password" class="form-input" id="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Nova Senha</label>
+                            <input type="password" class="form-input" id="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirmar Nova Senha</label>
+                            <input type="password" class="form-input" id="confirmNewPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Alterar Senha
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div class="admin-card-header">
+                    <h3>Informações do Sistema</h3>
+                </div>
+                <div class="admin-card-body">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-label">Versão:</span>
+                            <span class="info-value">1.0.0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Criador:</span>
+                            <span class="info-value">Zn_Atxug</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Última atualização:</span>
+                            <span class="info-value" id="lastUpdate">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card danger-zone">
+                <div class="admin-card-header">
+                    <h3>⚠️ Zona de Perigo</h3>
+                </div>
+                <div class="admin-card-body">
+                    <p class="danger-text">Ações irreversíveis. Tenha cuidado!</p>
+                    <div class="danger-actions">
+                        <button class="btn btn-danger" id="resetDataBtn">
+                            Resetar Dados de Exemplo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Script Modal -->
+    <div class="modal" id="scriptFormModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="closeScriptFormModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="scriptFormTitle">Adicionar Script</h2>
+            </div>
+            <form class="modal-form" id="scriptForm">
+                <input type="hidden" id="scriptId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nome do Script *</label>
+                        <input type="text" class="form-input" id="scriptName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Jogo *</label>
+                        <input type="text" class="form-input" id="scriptGame" required placeholder="Ex: Blox Fruits">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Descrição *</label>
+                    <textarea class="form-textarea" id="scriptDescription" rows="4" required placeholder="Descreva o que o script faz..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Script (Código) *</label>
+                    <textarea class="form-textarea code-textarea" id="scriptCode" rows="6" required placeholder="loadstring(game:HttpGet('...'))()"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Criador *</label>
+                        <input type="text" class="form-input" id="scriptCreator" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Discord do Criador</label>
+                        <input type="url" class="form-input" id="scriptDiscord" placeholder="https://discord.gg/...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">URL da Imagem</label>
+                    <input type="url" class="form-input" id="scriptImage" placeholder="https://...">
+                    <span class="form-hint">Cole o link de uma imagem (Imgur, Discord, etc)</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ou faça upload de imagem</label>
+                    <input type="file" class="form-input" id="scriptImageFile" accept="image/*">
+                    <div class="image-preview" id="scriptImagePreview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="cancelScriptForm">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Script</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Executor Modal -->
+    <div class="modal" id="executorFormModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-lg">
+            <button class="modal-close" id="closeExecutorFormModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="executorFormTitle">Adicionar Executor</h2>
+            </div>
+            <form class="modal-form" id="executorForm">
+                <input type="hidden" id="executorId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nome do Executor *</label>
+                        <input type="text" class="form-input" id="executorName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Plataforma *</label>
+                        <select class="form-input" id="executorPlatform" required>
+                            <option value="">Selecione...</option>
+                            <option value="windows">Windows</option>
+                            <option value="mobile">Mobile (Android)</option>
+                            <option value="mac">Mac</option>
+                            <option value="ios">iOS</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Descrição *</label>
+                    <textarea class="form-textarea" id="executorDescription" rows="4" required placeholder="Descreva as funcionalidades do executor..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Link de Download *</label>
+                    <input type="url" class="form-input" id="executorDownload" required placeholder="https://...">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Criador *</label>
+                        <input type="text" class="form-input" id="executorCreator" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Discord do Criador</label>
+                        <input type="url" class="form-input" id="executorDiscord" placeholder="https://discord.gg/...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">URL da Imagem</label>
+                    <input type="url" class="form-input" id="executorImage" placeholder="https://...">
+                    <span class="form-hint">Cole o link de uma imagem (Imgur, Discord, etc)</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Ou faça upload de imagem</label>
+                    <input type="file" class="form-input" id="executorImageFile" accept="image/*">
+                    <div class="image-preview" id="executorImagePreview"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="cancelExecutorForm">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Executor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h2 class="modal-title">⚠️ Confirmar Exclusão</h2>
+            </div>
+            <div class="modal-body">
+                <p id="deleteMessage">Tem certeza que deseja excluir este item?</p>
+                <p class="delete-warning">Esta ação não pode ser desfeita.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="cancelDelete">Cancelar</button>
+                <button class="btn btn-danger" id="confirmDelete">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Edit Modal -->
+    <div class="modal" id="userEditModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="closeUserEditModal">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">Editar Usuário</h2>
+            </div>
+            <form class="modal-form" id="userEditForm">
+                <input type="hidden" id="editUserId">
+                <div class="form-group">
+                    <label class="form-label">Tipo de Conta</label>
+                    <select class="form-input" id="editUserRole">
+                        <option value="user">Usuário</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nova Senha (deixe em branco para manter)</label>
+                    <input type="password" class="form-input" id="editUserPassword" placeholder="Nova senha...">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="cancelUserEdit">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon"></span>
+        <span class="toast-message"></span>
+    </div>
+
+    <!-- Admin Login Modal (para acesso não autorizado) -->
+    <div class="modal active" id="adminLoginModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🔐 Acesso Restrito</h2>
+                <p class="modal-subtitle">Faça login como administrador para continuar</p>
+            </div>
+            <form class="modal-form" id="adminLoginForm">
+                <div class="form-group">
+                    <label class="form-label">Usuário</label>
+                    <input type="text" class="form-input" id="adminLoginUsername" placeholder="admin" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Senha</label>
+                    <input type="password" class="form-input" id="adminLoginPassword" placeholder="Senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Entrar
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p><a href="index.html">← Voltar ao site</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
